@@ -15,7 +15,9 @@ import org.jetbrains.kotlin.spec.utils.GeneralConfiguration.SPEC_TEST_PATH
 import org.jetbrains.kotlin.spec.utils.GeneralConfiguration.TESTS_MAP_FILENAME
 import org.jetbrains.kotlin.spec.utils.SectionsJsonMapGenerator
 import org.jetbrains.kotlin.spec.utils.TestsJsonMapGenerator
+import org.jetbrains.kotlin.test.runners.AbstractFirLightTreeBlackBoxCodegenTestSpec
 import org.jetbrains.kotlin.test.runners.AbstractFirLightTreeDiagnosticTestSpec
+import org.jetbrains.kotlin.test.runners.AbstractFirPsiBlackBoxCodegenTestSpec
 import org.jetbrains.kotlin.test.runners.AbstractFirPsiDiagnosticTestSpec
 import org.jetbrains.kotlin.test.utils.CUSTOM_TEST_DATA_EXTENSION_PATTERN
 import java.io.File
@@ -47,7 +49,7 @@ fun generateTests() {
                 model(
                     "diagnostics",
                     excludeDirs = listOf("helpers") + detectDirsWithTestsMapFileOnly("diagnostics"),
-                    excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN
+                    excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN,
                 )
             }
 
@@ -59,7 +61,11 @@ fun generateTests() {
                 )
             }
             testClass<AbstractBlackBoxCodegenTestSpec> {
-                model("codegen/box", excludeDirs = listOf("helpers", "templates") + detectDirsWithTestsMapFileOnly("codegen/box"))
+                model(
+                    relativeRootPath = "codegen/box",
+                    excludeDirs = listOf("helpers", "templates") + detectDirsWithTestsMapFileOnly("codegen/box"),
+                    excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN,
+                )
             }
         }
     }
@@ -78,6 +84,23 @@ fun generateTests() {
                     "diagnostics",
                     excludeDirs = listOf("helpers") + detectDirsWithTestsMapFileOnly("diagnostics"),
                     excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN
+                )
+            }
+        }
+
+        testGroup(SPEC_TEST_PATH, SPEC_TESTDATA_PATH) {
+            testClass<AbstractFirPsiBlackBoxCodegenTestSpec> {
+                model(
+                    relativeRootPath = "codegen/box",
+                    excludeDirs = listOf("helpers", "templates") + detectDirsWithTestsMapFileOnly("codegen/box"),
+                    excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN,
+                )
+            }
+            testClass<AbstractFirLightTreeBlackBoxCodegenTestSpec> {
+                model(
+                    relativeRootPath = "codegen/box",
+                    excludeDirs = listOf("helpers", "templates") + detectDirsWithTestsMapFileOnly("codegen/box"),
+                    excludedPattern = CUSTOM_TEST_DATA_EXTENSION_PATTERN,
                 )
             }
         }
