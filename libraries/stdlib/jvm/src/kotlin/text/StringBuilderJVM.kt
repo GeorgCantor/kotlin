@@ -248,7 +248,7 @@ private object SystemProperties {
 public fun Appendable.appendln(): Appendable = append(SystemProperties.LINE_SEPARATOR)
 
 /** Appends value to the given Appendable and line separator after it. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -258,7 +258,7 @@ public fun Appendable.appendln(): Appendable = append(SystemProperties.LINE_SEPA
 public inline fun Appendable.appendln(value: CharSequence?): Appendable = append(value).appendln()
 
 /** Appends value to the given Appendable and line separator after it. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -276,7 +276,7 @@ public inline fun Appendable.appendln(value: Char): Appendable = append(value).a
 public fun StringBuilder.appendln(): StringBuilder = append(SystemProperties.LINE_SEPARATOR)
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -286,7 +286,7 @@ public fun StringBuilder.appendln(): StringBuilder = append(SystemProperties.LIN
 public inline fun StringBuilder.appendln(value: StringBuffer?): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -296,7 +296,7 @@ public inline fun StringBuilder.appendln(value: StringBuffer?): StringBuilder = 
 public inline fun StringBuilder.appendln(value: CharSequence?): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -306,7 +306,7 @@ public inline fun StringBuilder.appendln(value: CharSequence?): StringBuilder = 
 public inline fun StringBuilder.appendln(value: String?): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -316,7 +316,7 @@ public inline fun StringBuilder.appendln(value: String?): StringBuilder = append
 public inline fun StringBuilder.appendln(value: Any?): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -326,7 +326,7 @@ public inline fun StringBuilder.appendln(value: Any?): StringBuilder = append(va
 public inline fun StringBuilder.appendln(value: StringBuilder?): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -336,7 +336,7 @@ public inline fun StringBuilder.appendln(value: StringBuilder?): StringBuilder =
 public inline fun StringBuilder.appendln(value: CharArray): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -346,7 +346,7 @@ public inline fun StringBuilder.appendln(value: CharArray): StringBuilder = appe
 public inline fun StringBuilder.appendln(value: Char): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -356,7 +356,7 @@ public inline fun StringBuilder.appendln(value: Char): StringBuilder = append(va
 public inline fun StringBuilder.appendln(value: Boolean): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -366,7 +366,7 @@ public inline fun StringBuilder.appendln(value: Boolean): StringBuilder = append
 public inline fun StringBuilder.appendln(value: Int): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -376,7 +376,7 @@ public inline fun StringBuilder.appendln(value: Int): StringBuilder = append(val
 public inline fun StringBuilder.appendln(value: Short): StringBuilder = append(value.toInt()).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -386,7 +386,7 @@ public inline fun StringBuilder.appendln(value: Short): StringBuilder = append(v
 public inline fun StringBuilder.appendln(value: Byte): StringBuilder = append(value.toInt()).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -396,7 +396,7 @@ public inline fun StringBuilder.appendln(value: Byte): StringBuilder = append(va
 public inline fun StringBuilder.appendln(value: Long): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
@@ -406,7 +406,7 @@ public inline fun StringBuilder.appendln(value: Long): StringBuilder = append(va
 public inline fun StringBuilder.appendln(value: Float): StringBuilder = append(value).appendln()
 
 /** Appends [value] to this [StringBuilder], followed by a line separator. */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 @Deprecated(
     "Use appendLine instead. Note that the new method always appends the line feed character '\\n' regardless of the system line separator.",
     ReplaceWith("appendLine(value)")
