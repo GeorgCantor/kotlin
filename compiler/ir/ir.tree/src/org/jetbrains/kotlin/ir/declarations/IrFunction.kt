@@ -6,6 +6,7 @@
 package org.jetbrains.kotlin.ir.declarations
 
 import org.jetbrains.kotlin.descriptors.FunctionDescriptor
+import org.jetbrains.kotlin.ir.LocationTracker
 import org.jetbrains.kotlin.ir.ObsoleteDescriptorBasedAPI
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.symbols.IrFunctionSymbol
@@ -29,9 +30,35 @@ sealed class IrFunction : IrDeclarationBase(), IrPossiblyExternalDeclaration, Ir
 
     abstract var returnType: IrType
 
+    internal var anyCallHasBeenCreated: Boolean = false
+
     var dispatchReceiverParameter: IrValueParameter? = null
+        set(value) {
+            receiverChanged(field, value)
+            field = value
+        }
 
     var extensionReceiverParameter: IrValueParameter? = null
+        set(value) {
+            receiverChanged(field, value)
+            field = value
+        }
+
+    private fun receiverChanged(old: IrValueParameter?, new: IrValueParameter?) {
+        LocationTracker.initialize()
+
+        if (!anyCallHasBeenCreated)
+            return
+
+        val wasBefore = old != null
+        val isNow = new != null
+        if (wasBefore && !isNow) {
+            LocationTracker.recordStackTrace(LocationTracker.parameterRemovedWhileThereAreExistingCalls, 1)
+        }
+        if (!wasBefore && isNow) {
+            LocationTracker.recordStackTrace(LocationTracker.parameterAddedWhileThereAreExistingCalls, 1)
+        }
+    }
 
     @OptIn(DelicateIrParameterIndexSetter::class)
     var valueParameters: List<IrValueParameter> = emptyList()
