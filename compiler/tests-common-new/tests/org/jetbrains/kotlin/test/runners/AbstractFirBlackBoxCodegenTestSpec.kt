@@ -13,13 +13,10 @@ import org.jetbrains.kotlin.test.directives.ConfigurationDirectives.WITH_STDLIB
 import org.jetbrains.kotlin.test.directives.JvmEnvironmentConfigurationDirectives.FULL_JDK
 import org.jetbrains.kotlin.test.directives.JvmEnvironmentConfigurationDirectives.WITH_REFLECT
 import org.jetbrains.kotlin.test.frontend.fir.FirFailingTestSuppressor
-import org.jetbrains.kotlin.test.model.TestFile
 import org.jetbrains.kotlin.test.runners.codegen.AbstractFirBlackBoxCodegenTestBase
-import org.jetbrains.kotlin.test.services.SourceFilePreprocessor
-import org.jetbrains.kotlin.test.services.TestServices
+import org.jetbrains.kotlin.test.services.PackageNamePreprocessor
 import org.jetbrains.kotlin.test.services.sourceProviders.SpecHelpersSourceFilesProvider
 import org.jetbrains.kotlin.utils.bind
-import java.util.regex.Pattern
 
 abstract class AbstractFirBlackBoxCodegenTestSpecBase(parser: FirParser) : AbstractFirBlackBoxCodegenTestBase(parser) {
     override fun configure(builder: TestConfigurationBuilder) {
@@ -36,21 +33,7 @@ open class AbstractFirBlackBoxCodegenTestSpec : AbstractFirBlackBoxCodegenTestSp
         builder.useAdditionalService { LightTreeSyntaxDiagnosticsReporterHolder() }
     }
 }
-private const val HELPERS_PACKAGE_VARIABLE = "<?PACKAGE?>"
-private val packagePattern: Pattern = Pattern.compile("""(?:^|\n)package (?<packageName>.*?)(?:;|\n)""")
-private class PackageNamePreprocessor(testServices: TestServices) : SourceFilePreprocessor(testServices) {
-    var packageName = ""
 
-    override fun process(file: TestFile, content: String): String {
-        val packageName = packagePattern.matcher(content).let {
-            if (it.find()) it.group("packageName") else null
-        }
-        if (packageName != null) {
-            this.packageName = packageName
-        }
-        return content.replace(HELPERS_PACKAGE_VARIABLE, if (this.packageName == "") "" else "package ${this.packageName}")
-    }
-}
 private fun TestConfigurationBuilder.baseFirSpecBlackBoxCodegenTestConfiguration(baseDir: String = ".") {
     defaultDirectives {
         +SPEC_HELPERS
